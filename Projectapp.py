@@ -119,20 +119,20 @@ if rad=="Bernoulli Naive Bayes Detection":
 #Confusion matrix
 if rad=="confusion matrix":
     st.header("Confusion matrix of multinomial and bernoulli naive bayes")
-     st.image("Spam and ham detection.jpeg")
+    st.image("Spam and ham detection.jpeg")
 #Other info
 #----
 
 #Other info
 if rad=="Other info":
     st.header("Analysis of multinomial and bernoulli naive bayes")
-     st.image("Spam and ham detection.jpeg")
+    st.image("Spam and ham detection.jpeg")
 #Conclusion
 #----
 
 #Conclusion
 if rad=="Conclusion":
     st.header("Conclusiion from comparative analysis of multinomial and bernoulli naive bayes for SMS spam detection")
-     st.image("Spam and ham detection.jpeg")
+    st.image("Spam and ham detection.jpeg")
    
 
