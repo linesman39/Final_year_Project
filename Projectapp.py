@@ -58,7 +58,7 @@ def transform1(txt1):
     txt1=tfidf1.fit_transform(txt1)
     return txt1.toarray()
 
-df1=pd.read_csv("Spam Detection.csv",encoding='latin-1)
+df1=pd.read_csv("Spam Detection.csv",encoding='latin-1')
 df1.columns=["Label","Text"]
 x=transform1(df1["Text"])
 y=df1["Label"]
@@ -86,7 +86,7 @@ def transform2(txt2):
     txt2=tfidf2.fit_transform(txt2)
     return txt2.toarray()
 
-df2=pd.read_csv("Spam Detection.csv",encoding='latin-1)
+df2=pd.read_csv("Spam Detection.csv",encoding='latin-1')
 df2.columns=["Label","Text"]
 x=transform1(df2["Text"])
 y=df2["Label"]
