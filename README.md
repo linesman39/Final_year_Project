@@ -2,7 +2,7 @@
              Comparative analysis of multinomial and bernoulli naive bayes for SMS spam detection Web App 💬 📝 ✍️
 </h1>
 
-![image](https://user-images.githubusercontent.com/78029145/154792740-dadca757-5424-4e4c-af69-fc3a5055af3b.png)
+![image](https://th.bing.com/th/id/OIP.1pkD9aiIpyyqzNpz2LGXywHaEK?w=319&h=180&c=7&r=0&o=5&pid=1.7)
 
 This app is used to perform an indepth analysis of the performance of multinomial and bernoulli naive bayes for SMS spam detection
 The analysis sections include ->
