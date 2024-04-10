@@ -25,7 +25,7 @@ if rad=="Home":
     st.title("Complete Spam or Ham Detection App")
     st.image("Spam and ham detection.jpeg")
     st.text(" ")
-    st.text("The Following Text Analysis Options Are Available->")
+    st.text("The Following Options Are Available->")
     st.text(" ")
     st.text("1. Using Multinomial Naive Bayes Detection")
     st.text(" ")
