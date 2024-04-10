@@ -18,7 +18,7 @@ nltk.download('punkt')
 nltk.download('stopwords')
 sw=nltk.corpus.stopwords.words("english")
 
-rad=st.sidebar.radio("Navigation",["Home","Multinomial Naive Bayes Detection","Bernoulli Naive Bayes Detection"])
+rad=st.sidebar.radio("Navigation",["Home","Multinomial Naive Bayes Detection","Bernoulli Naive Bayes Detection","confusion matrix","Other Info","conclusion"])
 
 #Home Page
 if rad=="Home":
@@ -27,10 +27,16 @@ if rad=="Home":
     st.text(" ")
     st.text("The Following Text Analysis Options Are Available->")
     st.text(" ")
-    st.text("1. Using Multinomial Naive Bayes")
+    st.text("1. Using Multinomial Naive Bayes Detection")
     st.text(" ")
-    st.text("2. Using Bernoulli Naive Bayes")
-    
+    st.text("2. Using Bernoulli Naive Bayes Detection")
+    st.text(" ")
+    st.text("3. confusion matrix")
+    st.text(" ")
+    st.text("4. Other Info")
+    st.text(" ")
+    st.text("5. conclusion")
+
 
 #function to clean and transform the user input which is in raw format
 def transform_text(text):
@@ -67,7 +73,7 @@ model1=MultinomialNB()
 model1.fit(x_train1,y_train1)
 
 #Multinomial Spam Detection Analysis Page
-if rad=="Spam or Ham Detection":
+if rad=="Multinomial Naive Bayes Detection":
     st.header("Detect Whether A Text Is Spam Or Ham??")
     sent1=st.text_area("Enter The Text")
     transformed_sent1=transform_text(sent1)
@@ -95,7 +101,7 @@ model2=BernoulliNB()
 model2.fit(x_train2,y_train2)
 
 #Bernoulli spam detection Analysis Page
-if rad=="Spam or Ham Detection":
+if rad=="Bernoulli Naive Bayes Detection":
     st.header("Detect Whether A Text Is Spam Or Ham??")
     sent2=st.text_area("Enter The Text")
     transformed_sent2=transform_text(sent2)
@@ -107,4 +113,26 @@ if rad=="Spam or Ham Detection":
             st.warning("Spam Text!!")
         elif prediction2=="ham":
             st.success("Ham Text!!")
+#confusion matrix
+#----
+
+#Confusion matrix
+if rad=="confusion matrix":
+    st.header("Confusion matrix of multinomial and bernoulli naive bayes")
+     st.image("Spam and ham detection.jpeg")
+#Other info
+#----
+
+#Other info
+if rad=="Other info":
+    st.header("Analysis of multinomial and bernoulli naive bayes")
+     st.image("Spam and ham detection.jpeg")
+#Conclusion
+#----
+
+#Conclusion
+if rad=="Conclusion":
+    st.header("Conclusiion from comparative analysis of multinomial and bernoulli naive bayes for SMS spam detection")
+     st.image("Spam and ham detection.jpeg")
+   
 
