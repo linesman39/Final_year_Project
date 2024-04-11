@@ -94,9 +94,9 @@ model2.fit(x_train1,y_train1)
 if rad=="Bernoulli Naive Bayes Detection":
     st.header("Detect Whether A Text Is Spam Or Ham??")
     sent2=st.text_area("Enter The Text")
-    transformed_sent1=transform_text(sent1)
-    vector_sent1=tfidf1.transform([transformed_sent1])
-    prediction=model2.predict(vector_sent1)[0]
+    transformed_sent2=transform_text(sent2)
+    vector_sent=tfidf1.transform([transformed_sent2])
+    prediction=model2.predict(vector_sent)[0]
 
     if st.button("Predict"):
         if prediction2=="spam":
