@@ -66,7 +66,7 @@ def transform1(txt1):
 
 df1=pd.read_csv("Spam Detection.csv")
 x=transform1(df1["Text"])
-y=df1["Label"]
+y=df1["Category"]
 x_train1,x_test1,y_train1,y_test1=train_test_split(x,y,test_size=0.1,random_state=0)
 model1=MultinomialNB()
 model1.fit(x_train1,y_train1)
@@ -93,7 +93,7 @@ def transform2(txt2):
 
 df2=pd.read_csv("Spam Detection.csv")
 x=transform1(df2["Text"])
-y=df2["Label"]
+y=df2["Category"]
 x_train2,x_test2,y_train2,y_test2=train_test_split(x,y,test_size=0.1,random_state=0)
 model2=BernoulliNB()
 model2.fit(x_train2,y_train2)
