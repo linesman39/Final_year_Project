@@ -99,9 +99,9 @@ if rad=="Bernoulli Naive Bayes Detection":
     prediction=model2.predict(vector_sent)[0]
 
     if st.button("Predict"):
-        if prediction2=="spam":
+        if prediction=="spam":
             st.warning("Spam Text!!")
-        elif prediction2=="ham":
+        elif prediction=="ham":
             st.success("Ham Text!!")
 #confusion matrix
 #----
