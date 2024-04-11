@@ -65,7 +65,6 @@ def transform1(txt1):
     return txt1.toarray()
 
 df1=pd.read_csv("Spam Detection.csv",encoding='latin-1')
-df1.columns=["Label","Text"]
 x=transform1(df1["Text"])
 y=df1["Label"]
 x_train1,x_test1,y_train1,y_test1=train_test_split(x,y,test_size=0.1,random_state=0)
@@ -93,7 +92,6 @@ def transform2(txt2):
     return txt2.toarray()
 
 df2=pd.read_csv("Spam Detection.csv",encoding='latin-1')
-df2.columns=["Label","Text"]
 x=transform1(df2["Text"])
 y=df2["Label"]
 x_train2,x_test2,y_train2,y_test2=train_test_split(x,y,test_size=0.1,random_state=0)
