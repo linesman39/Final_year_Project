@@ -88,7 +88,7 @@ if rad=="Multinomial Naive Bayes Detection":
 #Bernoulli spam detection Prediction 
 
 model2=BernoulliNB()
-model2.fit(x_train,y_train)
+model2.fit(x_train1,y_train1)
 
 #Bernoulli spam detection Analysis Page
 if rad=="Bernoulli Naive Bayes Detection":
