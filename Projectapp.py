@@ -18,7 +18,7 @@ nltk.download('punkt')
 nltk.download('stopwords')
 sw=nltk.corpus.stopwords.words("english")
 
-rad=st.sidebar.radio("Navigation",["Home","Multinomial Naive Bayes Detection","Bernoulli Naive Bayes Detection","confusion matrix","Other Info","conclusion"])
+rad=st.sidebar.radio("Navigation",["Home","Multinomial Naive Bayes Detection","Bernoulli Naive Bayes Detection","Sentiment Analysis","Stress Detection","Hate and Offensive Content Detection","Sarcasm Detection"])
 
 #Home Page
 if rad=="Home":
@@ -87,8 +87,8 @@ if rad=="Multinomial Naive Bayes Detection":
 
 #Bernoulli spam detection Prediction 
 tfidf2=TfidfVectorizer(stop_words=sw,max_features=20)
-def transform1(txt2):
-    txt2=tfidf2.fit_transform(txt2)
+def transform1(txt1):
+    txt2=tfidf2.fit_transform(txt1)
     return txt2.toarray()
 
 df2=pd.read_csv("Spam Detection.csv")
@@ -111,62 +111,90 @@ if rad=="Bernoulli Naive Bayes Detection":
             st.warning("Spam Text!!")
         elif prediction=="0":
             st.success("Ham Text!!")
-#confusion matrix
-#----
+#Stress Detection Prediction
+tfidf3=TfidfVectorizer(stop_words=sw,max_features=20)
+def transform3(txt1):
+    txt2=tfidf3.fit_transform(txt1)
+    return txt2.toarray()
 
-model2=BernoulliNB()
-model2.fit(x_train1,y_train1)
+df3=pd.read_csv("Stress Detection.csv")
+df3=df3.drop(["subreddit","post_id","sentence_range","syntax_fk_grade"],axis=1)
+df3.columns=["Text","Sentiment","Stress Level"]
+x=transform3(df3["Text"])
+y=df3["Stress Level"].to_numpy()
+x_train3,x_test3,y_train3,y_test3=train_test_split(x,y,test_size=0.1,random_state=0)
+model3=DecisionTreeRegressor(max_leaf_nodes=2000)
+model3.fit(x_train3,y_train3)
 
-#Confusion matrix
-if rad=="confusion matrix":
-    st.header("Confusion matrix of multinomial and bernoulli naive bayes")
-    st.image("Spam and ham detection.jpeg")
-    sent2=st.text_area("Enter The Text")
-    transformed_sent2=transform_text(sent2)
-    vector_sent=tfidf1.transform([transformed_sent2])
-    prediction=model2.predict(vector_sent)[0]
-
-    if st.button("Predict"):
-        if prediction=="1":
-            st.warning("Spam Text!!")
-        elif prediction=="0":
-            st.success("Ham Text!!")
-#Other info
-#----
-
-model2=BernoulliNB()
-model2.fit(x_train1,y_train1)
-
-#Other info
-if rad=="Other info":
-    st.header("Analysis of multinomial and bernoulli naive bayes")
-    st.image("Spam and ham detection.jpeg")
-    sent2=st.text_area("Enter The Text")
-    transformed_sent2=transform_text(sent2)
-    vector_sent=tfidf1.transform([transformed_sent2])
-    prediction=model2.predict(vector_sent)[0]
+#Stress Detection Page
+if rad=="Stress Detection":
+    st.header("Detect The Amount Of Stress In The Text!!")
+    sent3=st.text_area("Enter The Text")
+    transformed_sent3=transform_text(sent3)
+    vector_sent3=tfidf3.transform([transformed_sent3])
+    prediction3=model3.predict(vector_sent3)[0]
 
     if st.button("Predict"):
-        if prediction=="1":
-            st.warning("Spam Text!!")
-        elif prediction=="0":
-            st.success("Ham Text!!")
-#Conclusion
-#----
-model2=BernoulliNB()
-model2.fit(x_train1,y_train1)
+        if prediction3>=0:
+            st.warning("Stressful Text!!")
+        elif prediction3<0:
+            st.success("Not A Stressful Text!!")
+            
+#Hate & Offensive Content Prediction
+tfidf4=TfidfVectorizer(stop_words=sw,max_features=20)
+def transform4(txt1):
+    txt2=tfidf4.fit_transform(txt1)
+    return txt2.toarray()
 
-#Conclusion
-if rad=="Conclusion":
-    st.header("Conclusiion from comparative analysis of multinomial and bernoulli naive bayes for SMS spam detection")
-    st.image("Spam and ham detection.jpeg")
-    sent2=st.text_area("Enter The Text")
-    transformed_sent2=transform_text(sent2)
-    vector_sent=tfidf1.transform([transformed_sent2])
-    prediction=model2.predict(vector_sent)[0]
+df4=pd.read_csv("Hate Content Detection.csv")
+df4=df4.drop(["Unnamed: 0","count","neither"],axis=1)
+df4.columns=["Hate Level","Offensive Level","Class Level","Text"]
+x=transform4(df4["Text"])
+y=df4["Class Level"]
+x_train4,x_test4,y_train4,y_test4=train_test_split(x,y,test_size=0.1,random_state=0)
+model4=RandomForestClassifier()
+model4.fit(x_train4,y_train4)
+
+#Hate & Offensive Content Page
+if rad=="Hate and Offensive Content Detection":
+    st.header("Detect The Level Of Hate & Offensive Content In The Text!!")
+    sent4=st.text_area("Enter The Text")
+    transformed_sent4=transform_text(sent4)
+    vector_sent4=tfidf4.transform([transformed_sent4])
+    prediction4=model4.predict(vector_sent4)[0]
 
     if st.button("Predict"):
-        if prediction=="1":
-            st.warning("Spam Text!!")
-        elif prediction=="0":
-            st.success("Ham Text!!")
+        if prediction4==0:
+            st.exception("Highly Offensive Text!!")
+        elif prediction4==1:
+            st.warning("Offensive Text!!")
+        elif prediction4==2:
+            st.success("Non Offensive Text!!")
+
+#Sarcasm Detection Prediction
+tfidf5=TfidfVectorizer(stop_words=sw,max_features=20)
+def transform5(txt1):
+    txt2=tfidf5.fit_transform(txt1)
+    return txt2.toarray()
+
+df5=pd.read_csv("Sarcasm Detection.csv")
+df5.columns=["Text","Label"]
+x=transform5(df5["Text"])
+y=df5["Label"]
+x_train5,x_test5,y_train5,y_test5=train_test_split(x,y,test_size=0.1,random_state=0)
+model5=LogisticRegression()
+model5.fit(x_train5,y_train5) 
+
+#Sarcasm Detection Page
+if rad=="Sarcasm Detection":
+    st.header("Detect Whether The Text Is Sarcastic Or Not!!")
+    sent5=st.text_area("Enter The Text")
+    transformed_sent5=transform_text(sent5)
+    vector_sent5=tfidf5.transform([transformed_sent5])
+    prediction5=model5.predict(vector_sent5)[0]
+
+    if st.button("Predict"):
+        if prediction5==1:
+            st.exception("Sarcastic Text!!")
+        elif prediction5==0:
+            st.success("Non Sarcastic Text!!")
