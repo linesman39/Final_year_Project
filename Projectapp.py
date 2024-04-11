@@ -80,9 +80,9 @@ if rad=="Multinomial Naive Bayes Detection":
     prediction1=model1.predict(vector_sent1)[0]
 
     if st.button("Predict"):
-        if prediction1=="spam":
+        if prediction1=="1":
             st.warning("Spam Text!!")
-        elif prediction1=="ham":
+        elif prediction1=="0":
             st.success("Ham Text!!")
 
 #Bernoulli spam detection Prediction 
@@ -99,9 +99,9 @@ if rad=="Bernoulli Naive Bayes Detection":
     prediction=model2.predict(vector_sent)[0]
 
     if st.button("Predict"):
-        if prediction=="spam":
+        if prediction=="1":
             st.warning("Spam Text!!")
-        elif prediction=="ham":
+        elif prediction=="0":
             st.success("Ham Text!!")
 #confusion matrix
 #----
