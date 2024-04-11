@@ -113,8 +113,6 @@ model2.fit(x_train1,y_train1)
 if rad=="confusion matrix":
     st.header("Confusion matrix of multinomial and bernoulli naive bayes")
     st.image("Spam and ham detection.jpeg")
-    if rad=="Bernoulli Naive Bayes Detection":
-    st.header("Detect Whether A Text Is Spam Or Ham??")
     sent2=st.text_area("Enter The Text")
     transformed_sent2=transform_text(sent2)
     vector_sent=tfidf1.transform([transformed_sent2])
@@ -135,8 +133,6 @@ model2.fit(x_train1,y_train1)
 if rad=="Other info":
     st.header("Analysis of multinomial and bernoulli naive bayes")
     st.image("Spam and ham detection.jpeg")
-if rad=="Bernoulli Naive Bayes Detection":
-    st.header("Detect Whether A Text Is Spam Or Ham??")
     sent2=st.text_area("Enter The Text")
     transformed_sent2=transform_text(sent2)
     vector_sent=tfidf1.transform([transformed_sent2])
