@@ -85,7 +85,7 @@ def transform1(txt1):
     txt2=tfidf2.fit_transform(txt1)
     return txt2.toarray()
 
-df2=pd.read_csv("Spam Detection.csv")
+df2=pd.read_csv("Spam Detection2.csv")
 x=transform1(df2["Text"])
 y=df2["Category"]
 x_train2,x_test2,y_train2,y_test2=train_test_split(x,y,test_size=0.1,random_state=0)
