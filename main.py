@@ -43,7 +43,7 @@ add_bg_from_url()
 
 #Load the model
 
-with open('pipe.pkl', 'rb') as f:
+with open('MNB_detection_v1.pkl', 'rb') as f:
     model = pickle.load(f)
 #model=pickle.load('pipe.pkl')
 
