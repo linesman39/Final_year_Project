@@ -103,7 +103,7 @@ if rad=="Bernoulli Naive Bayes Detection":
     transformed_sent2=transform_text(sent2)
     transformed_sent2=transformed_sent2.reshape[-1,1]
     #vector_sent2=tfidf2.transform([transformed_sent2])
-    prediction2=model2.predict(transformed_sent2)[-1,1]
+    prediction2=model2.predict(transformed_sent2)[0]
 
     if st.button("Predict"):
         if prediction2=="1":
