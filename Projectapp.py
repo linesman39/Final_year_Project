@@ -2,6 +2,7 @@ from tracemalloc import stop
 import streamlit as st
 import numpy as np
 import pandas as pd
+import pickle
 import re
 import string
 import nltk
@@ -64,7 +65,7 @@ y=df1["Category"]
 x_train1,x_test1,y_train1,y_test1=train_test_split(x,y,test_size=0.1,random_state=0)
 with open('MNB_detection_v1.pkl', 'rb') as f:
     model1 = pickle.load(f)
-model1.fit(x_train1,y_train1)
+#model1.fit(x_train1,y_train1)
 
 #Multinomial Spam Detection Analysis Page
 if rad=="Multinomial Naive Bayes Detection":
@@ -92,7 +93,7 @@ y=df2["Category"]
 x_train2,x_test2,y_train2,y_test2=train_test_split(x,y,test_size=0.1,random_state=0)
 with open('BNB_detection_v1.pkl', 'rb') as f:
     model2 = pickle.load(f)
-model2.fit(x_train2,y_train2)
+#model2.fit(x_train2,y_train2)
 
 #Bernoulli spam detection Analysis Page
 if rad=="Bernoulli Naive Bayes Detection":
