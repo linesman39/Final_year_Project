@@ -34,9 +34,8 @@ if rad=="Home":
 
 
 #function to clean and transform the user input which is in raw format
-def transform_text(text):
-    count = CountVectorizer()
-    text = count.fit_transform(text)
+#def transform_text(text):
+
     #y=[]
     #for i in text:
         #if i.isalnum():
@@ -71,10 +70,12 @@ with open('MNB_detection_v1.pkl', 'rb') as f:
 #Multinomial Spam Detection Analysis Page
 if rad=="Multinomial Naive Bayes Detection":
     st.header("use MNB to detect Whether A Text Is Spam Or Ham??")
-    sent1=st.text_area("Enter The Text")
-    transformed_sent1=transform_text(sent1)
+    text=st.text_area("Enter The Text")
+    count = CountVectorizer()
+    text = count.fit_transform(text)
+    #transformed_sent1=transform_text(sent1)
     #vector_sent1=tfidf1.transform([transformed_sent1])
-    prediction1=model1.predict(transformed_sent1)[0]
+    prediction1=model1.predict(text)[0]
 
     if st.button("Predict"):
         if prediction1=="1":
@@ -99,10 +100,12 @@ with open('BNB_detection_v1.pkl', 'rb') as f:
 #Bernoulli spam detection Analysis Page
 if rad=="Bernoulli Naive Bayes Detection":
     st.header("use BNB to detect Whether A Text Is Spam Or Ham??")
-    sent2=st.text_area("Enter The Text")
-    transformed_sent2=transform_text(sent2)
-    #vector_sent2=tfidf2.transform([transformed_sent2])
-    prediction2=model2.predict(transformed_sent2)[0]
+    text2=st.text_area("Enter The Text")
+    count = CountVectorizer()
+    text2 = count.fit_transform(text2)
+    #transformed_sent1=transform_text(sent1)
+    #vector_sent1=tfidf1.transform([transformed_sent1])
+    prediction2=model2.predict(text2)[0]
 
     if st.button("Predict"):
         if prediction2=="1":
