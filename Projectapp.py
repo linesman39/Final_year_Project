@@ -54,10 +54,10 @@ def transform_text(text):
     return " ".join(y)
 
 #Multinomial Spam Detection Prediction
-tfidf1=TfidfVectorizer(stop_words=sw,max_features=20)
-def transform1(txt1):
-    txt1=tfidf1.fit_transform(txt1)
-    return txt1.toarray()
+#tfidf1=TfidfVectorizer(stop_words=sw,max_features=20)
+#def transform1(txt1):
+    #txt1=tfidf1.fit_transform(txt1)
+    #return txt1.toarray()
 
 #df1=pd.read_csv("Spam Detection.csv")
 #x=transform1(df1["Text"])
@@ -73,7 +73,7 @@ if rad=="Multinomial Naive Bayes Detection":
     sent1=st.text_area("Enter The Text")
     transformed_sent1=transform_text(sent1)
     #vector_sent1=tfidf1.transform([transformed_sent1])
-    prediction1=model1.predict(transformed_sent1)[0]
+    prediction1=model1.predict(transformed_sent1)[-1,1]
 
     if st.button("Predict"):
         if prediction1=="1":
@@ -101,7 +101,7 @@ if rad=="Bernoulli Naive Bayes Detection":
     sent2=st.text_area("Enter The Text")
     transformed_sent2=transform_text(sent2)
     #vector_sent2=tfidf2.transform([transformed_sent2])
-    prediction2=model2.predict(transformed_sent2)[0]
+    prediction2=model2.predict(transformed_sent2)[-1,1]
 
     if st.button("Predict"):
         if prediction2=="1":
