@@ -37,21 +37,24 @@ if rad=="Home":
 def transform_text(text):
     text=text.lower()
     text=nltk.word_tokenize(text)
-    y=[]
-    for i in text:
-        if i.isalnum():
-            y.append(i)
-    text=y[:]
-    y.clear()
-    for i in text:
-        if i not in stopwords.words('english') and i not in string.punctuation:
-            y.append(i)
-    text=y[:]
-    y.clear()
-    ps=PorterStemmer()
-    for i in text:
-        y.append(ps.stem(i))
-    return " ".join(y)
+    count = CountVectorizer()
+    text = count.fit_transform(text)
+    #y=[]
+    #for i in text:
+        #if i.isalnum():
+            #y.append(i)
+    #text=y[:]
+    #y.clear()
+    #for i in text:
+        #if i not in stopwords.words('english') and i not in string.punctuation:
+            #y.append(i)
+    #text=y[:]
+    #y.clear()
+    #ps=PorterStemmer()
+    #for i in text:
+        #y.append(ps.stem(i))
+    #return " ".join(y)
+    
 
 #Multinomial Spam Detection Prediction
 #tfidf1=TfidfVectorizer(stop_words=sw,max_features=20)
@@ -72,7 +75,6 @@ if rad=="Multinomial Naive Bayes Detection":
     st.header("use MNB to detect Whether A Text Is Spam Or Ham??")
     sent1=st.text_area("Enter The Text")
     transformed_sent1=transform_text(sent1)
-    transformed_sent1=transformed_sent1.reshape[-1,1]
     #vector_sent1=tfidf1.transform([transformed_sent1])
     prediction1=model1.predict(transformed_sent1)[0]
 
@@ -101,7 +103,6 @@ if rad=="Bernoulli Naive Bayes Detection":
     st.header("use BNB to detect Whether A Text Is Spam Or Ham??")
     sent2=st.text_area("Enter The Text")
     transformed_sent2=transform_text(sent2)
-    transformed_sent2=transformed_sent2.reshape[-1,1]
     #vector_sent2=tfidf2.transform([transformed_sent2])
     prediction2=model2.predict(transformed_sent2)[0]
 
