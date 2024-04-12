@@ -35,8 +35,6 @@ if rad=="Home":
 
 #function to clean and transform the user input which is in raw format
 def transform_text(text):
-    text=text.lower()
-    text=nltk.word_tokenize(text)
     count = CountVectorizer()
     text = count.fit_transform(text)
     #y=[]
