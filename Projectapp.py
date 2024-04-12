@@ -35,8 +35,7 @@ if rad=="Home":
 #function to clean and transform the user input which is in raw format
 def transform_text(text):
     text=text.lower()
-    count = CountVectorizer()
-    text = count.fit_transform(df['Text'])
+    text=nltk.word_tokenize(text)
     y=[]
     for i in text:
         if i.isalnum():
@@ -68,7 +67,7 @@ model1.fit(x_train1,y_train1)
 
 #Multinomial Spam Detection Analysis Page
 if rad=="Multinomial Naive Bayes Detection":
-    st.header("Detect Whether A Text Is Spam Or Ham??")
+    st.header("use MNB to detect Whether A Text Is Spam Or Ham??")
     sent1=st.text_area("Enter The Text")
     transformed_sent1=transform_text(sent1)
     vector_sent1=tfidf1.transform([transformed_sent1])
@@ -82,7 +81,7 @@ if rad=="Multinomial Naive Bayes Detection":
 
 #Bernoulli spam detection Prediction 
 tfidf2=TfidfVectorizer(stop_words=sw,max_features=20)
-def transform1(txt1):
+def transform2(txt1):
     txt2=tfidf2.fit_transform(txt1)
     return txt2.toarray()
 
@@ -95,14 +94,14 @@ model2.fit(x_train2,y_train2)
 
 #Bernoulli spam detection Analysis Page
 if rad=="Bernoulli Naive Bayes Detection":
-    st.header("Detect Whether A Text Is Spam Or Ham??")
+    st.header("use BNB to detect Whether A Text Is Spam Or Ham??")
     sent2=st.text_area("Enter The Text")
     transformed_sent2=transform_text(sent2)
-    vector_sent=tfidf2.transform([transformed_sent2])
-    prediction=model2.predict(vector_sent)[0]
+    vector_sent2=tfidf2.transform([transformed_sent2])
+    prediction2=model2.predict(vector_sent2)[0]
 
     if st.button("Predict"):
-        if prediction=="1":
+        if prediction2=="1":
             st.warning("Spam Text!!")
-        elif prediction=="0":
+        elif prediction2=="0":
             st.success("Ham Text!!")
