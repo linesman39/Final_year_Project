@@ -72,7 +72,7 @@ if rad=="Multinomial Naive Bayes Detection":
     st.header("use MNB to detect Whether A Text Is Spam Or Ham??")
     sent1=st.text_area("Enter The Text")
     transformed_sent1=transform_text(sent1)
-    transformed_sent1=transformed-sent1.reshape[-1,1]
+    transformed_sent1=transformed_sent1.reshape[-1,1]
     #vector_sent1=tfidf1.transform([transformed_sent1])
     prediction1=model1.predict(transformed_sent1)[0]
 
@@ -101,7 +101,7 @@ if rad=="Bernoulli Naive Bayes Detection":
     st.header("use BNB to detect Whether A Text Is Spam Or Ham??")
     sent2=st.text_area("Enter The Text")
     transformed_sent2=transform_text(sent2)
-    transformed_sent2=transformed-sent2.reshape[-1,1]
+    transformed_sent2=transformed_sent2.reshape[-1,1]
     #vector_sent2=tfidf2.transform([transformed_sent2])
     prediction2=model2.predict(transformed_sent2)[-1,1]
 
