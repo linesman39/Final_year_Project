@@ -59,21 +59,21 @@ def transform1(txt1):
     txt1=tfidf1.fit_transform(txt1)
     return txt1.toarray()
 
-df1=pd.read_csv("Spam Detection.csv")
-x=transform1(df1["Text"])
-y=df1["Category"]
-x_train1,x_test1,y_train1,y_test1=train_test_split(x,y,test_size=0.1,random_state=0)
+#df1=pd.read_csv("Spam Detection.csv")
+#x=transform1(df1["Text"])
+#y=df1["Category"]
+#x_train1,x_test1,y_train1,y_test1=train_test_split(x,y,test_size=0.1,random_state=0)
 with open('MNB_detection_v1.pkl', 'rb') as f:
     model1 = pickle.load(f)
-model1.fit(x_train1,y_train1)
+#model1.fit(x_train1,y_train1)
 
 #Multinomial Spam Detection Analysis Page
 if rad=="Multinomial Naive Bayes Detection":
     st.header("use MNB to detect Whether A Text Is Spam Or Ham??")
     sent1=st.text_area("Enter The Text")
     transformed_sent1=transform_text(sent1)
-    vector_sent1=tfidf1.transform([transformed_sent1])
-    prediction1=model1.predict(vector_sent1)[0]
+    #vector_sent1=tfidf1.transform([transformed_sent1])
+    prediction1=model1.predict(transformed_sent1)[0]
 
     if st.button("Predict"):
         if prediction1=="1":
@@ -82,26 +82,26 @@ if rad=="Multinomial Naive Bayes Detection":
             st.success("Ham Text!!")
 
 #Bernoulli spam detection Prediction 
-tfidf2=TfidfVectorizer(stop_words=sw,max_features=20)
-def transform2(txt1):
-    txt2=tfidf2.fit_transform(txt1)
-    return txt2.toarray()
+#tfidf2=TfidfVectorizer(stop_words=sw,max_features=20)
+#def transform2(txt1):
+    #txt2=tfidf2.fit_transform(txt1)
+    #return txt2.toarray()
 
-df2=pd.read_csv("Spam Detection2.csv")
-x=transform1(df2["Text"])
-y=df2["Category"]
-x_train2,x_test2,y_train2,y_test2=train_test_split(x,y,test_size=0.1,random_state=0)
+#df2=pd.read_csv("Spam Detection2.csv")
+#x=transform1(df2["Text"])
+#y=df2["Category"]
+#x_train2,x_test2,y_train2,y_test2=train_test_split(x,y,test_size=0.1,random_state=0)
 with open('BNB_detection_v1.pkl', 'rb') as f:
     model2 = pickle.load(f)
-model2.fit(x_train2,y_train2)
+#model2.fit(x_train2,y_train2)
 
 #Bernoulli spam detection Analysis Page
 if rad=="Bernoulli Naive Bayes Detection":
     st.header("use BNB to detect Whether A Text Is Spam Or Ham??")
     sent2=st.text_area("Enter The Text")
     transformed_sent2=transform_text(sent2)
-    vector_sent2=tfidf2.transform([transformed_sent2])
-    prediction2=model2.predict(vector_sent2)[0]
+    #vector_sent2=tfidf2.transform([transformed_sent2])
+    prediction2=model2.predict(transformed_sent2)[0]
 
     if st.button("Predict"):
         if prediction2=="1":
